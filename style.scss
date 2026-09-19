@@ -57,6 +57,21 @@ header{
         }
     }
 
+    .cartBtn{
+        position: relative;
+
+        .itemsNum{
+            position: absolute;
+            background-color: var(--Orange);
+            padding: .3em .6em;
+            border-radius: 50%;
+            bottom: 1em;
+            left: .5em;
+            color: white;
+            display: none;
+        }
+    }
+
     .avatar{
         width: 1.6em;
         height: 1.6em;
@@ -75,14 +90,14 @@ header{
         left: 0;
         width: 100%;
         height: 100vh;
-        z-index: 999;
-        background-color: rgba(0, 0, 0, 0.6);
+        z-index: 2999;
+        background-color: rgba(0, 0, 0, 0.7);
     }
 
     .navigation{
         position: fixed;
         display: none;
-        z-index: 1000;
+        z-index: 3000;
         top: 0;
         left: 0;
         width: 65%;
@@ -208,7 +223,7 @@ main{
 .imgContainer{
     position: relative;
 
-    .product{
+    .product, .lightboxImg{
         height: 19em;
         object-fit: cover;
         object-position: center;
@@ -225,8 +240,8 @@ main{
         justify-content: space-between;
         width: 90%;
         left: 1em;
-        top: 12.4em;
-        position: fixed;
+        top: 9.5em;
+        position: absolute;
 
         button{
             background-color: var(--Light-grayish-blue);
@@ -235,8 +250,12 @@ main{
             padding: .7em 1em;
         }
     }
-
 }
+
+.lightboxContainer{
+    display: none;
+}
+
 
 .itemDetails{
     padding: 5.1%;
@@ -267,6 +286,7 @@ main{
         .price_after_discount{
             display: flex;
             gap: 1em;
+            align-items: center;
 
             h2{
                 font-size: 2rem;
@@ -341,9 +361,6 @@ main{
     
 }
 
-.lightBoxImg{
-    display: none;
-}
 
 @media (min-width: 60em) {
 
@@ -398,6 +415,10 @@ main{
         }
         .cartContainer{
             right: 5em;
+        }
+
+        .overlay{
+            z-index: 3500;
         }
 
     }
@@ -462,6 +483,50 @@ main{
         }
     }
 
+
+    .lightboxContainer{
+        display: none;
+        position: absolute;
+        top: 4.2em;
+        left: 50%;
+        transform: translate(-50%);
+        z-index: 3600;
+
+        button{
+            background-color: transparent;
+            align-self: end;
+            border: none;
+            cursor: pointer;
+
+            .closeImg{
+                width: 1.5em;
+                height: 1.5em;
+            }
+        }
+
+        .lightboxImg{
+            border-radius: 1em;
+            height: 32em;
+            cursor: default;
+        }
+
+        .controlBtns{
+            display: flex;
+            position: absolute;
+            width: 107%;
+            top: 40%;
+            left: 50%;
+            transform: translate(-50%);
+
+            button{
+                cursor: pointer;
+                padding: 1.1em 1.4em;
+            }
+        }
+
+    }
+
+
     .itemDetails{
         width: 50%;
         gap: 0.8em;
@@ -507,32 +572,6 @@ main{
                 display: flex;
                 justify-content: center;
                 align-items: center;
-            }
-        }
-    }
-
-    .lightBoxImg{
-        display: none;
-        position: absolute;
-        top: 8em;
-        z-index: 1500;
-
-        .product{
-            height: 32em;
-            cursor: default;
-        }
-
-        .controlBtns{
-            position: absolute;
-            display: flex;
-            width: 108%;
-            top: 36%;
-            left: 50%;
-            transform: translate(-50%);
-            z-index: 2000;
-            
-            button{
-                cursor: pointer;
             }
         }
     }

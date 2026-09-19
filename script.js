@@ -6,13 +6,18 @@ const prodactImages = [
     "./assets/images/image-product-3.jpg",
     "./assets/images/image-product-4.jpg"
 ];
-const product = document.getElementsByClassName("product")[0];
-const previous = document.getElementsByClassName("previous")[0];
-const next = document.getElementsByClassName("next")[0];
+const products = document.querySelectorAll(".product");
+const previous = document.querySelectorAll(".previous");
+const next = document.querySelectorAll(".next");
+const lightboxImg = document.getElementsByClassName("lightboxImg")[0];
 let number = 0;
 
 function showCurrentImage(){
-    product.src = prodactImages[number];
+        lightboxImg.src = prodactImages[number];
+        
+    products.forEach((product)=>{
+        product.src = prodactImages[number];
+    })
 }
 
 showCurrentImage();
@@ -36,9 +41,14 @@ function nextImage(){
     showCurrentImage();
 }
 
-next.addEventListener("click", nextImage)
+next.forEach((next)=>{
+    next.addEventListener("click", nextImage);
+})
 
-previous.addEventListener("click", previousImage);
+previous.forEach((prev)=>{
+    prev.addEventListener("click", previousImage);
+})
+
 
 document.addEventListener("keydown",(e)=>{
     if(e.key === "ArrowRight"){
@@ -93,34 +103,49 @@ menu.addEventListener("click",()=>{
     overlay.style.display = "flex";
 })
 
-overlay.addEventListener("click",()=>{
-    navigation.style.display = "none";
-    overlay.style.display = "none";
-})
-
-//----------------Handle choosing images------------------
-
-
-const smallPictures = document.querySelector(".smallPictures");
-const images = smallPictures.querySelectorAll("img");
-const imgOverlay = document.getElementsByClassName("imgOverlay")[0];
-
-smallPictures.addEventListener("click",(e)=>{
-    const image = e.target.dataset.value;
-    if(typeof(image) != "undefined"){
-        product.setAttribute("src" , `assets/images/image-product-${image}.jpg`);
-
-        images.forEach((img)=>{
-            img.classList.remove("activeImg");
-        })
-
-        e.target.classList.add("activeImg");
-        //imgOverlay.style.left = `calc(2em * (${image} - 1) + 5em * (${image} - 1))`;
-        imgOverlay.style.left = `${e.target.offsetLeft}px`;     //بتجيب المسافة بين الحافة الشمال للعنصر وبين الحافة الشمال للـ parent بتاعه.
+overlay.addEventListener("click",
+    ()=>{
+        if(window.innerWidth < 960){
+        navigation.style.display = "none";
+        overlay.style.display = "none";
     }
+}
+)
+
+//----------------Handle choosing small images------------------
+
+
+const smallPictures = document.querySelectorAll(".smallPictures");
+const images = document.querySelectorAll(".smallImg");
+const imgOverlay = document.querySelectorAll(".imgOverlay");
+
+smallPictures.forEach((pics)=>{
+    pics.addEventListener("click",(e)=>{
+        const image = e.target.dataset.value;
+        if(typeof(image) != "undefined"){
+            
+            products.forEach((product)=>{
+                product.setAttribute("src" , `./assets/images/image-product-${image}.jpg`);
+            })
+
+            number = image-1;
+
+            images.forEach((img)=>{
+                img.classList.remove("activeImg");
+            })
+
+            e.target.classList.add("activeImg");
+            imgOverlay.forEach((imgOverlay)=>{
+                imgOverlay.style.left = `${e.target.offsetLeft}px`;
+            })
+                 //بتجيب المسافة بين الحافة الشمال للعنصر وبين الحافة الشمال للـ parent بتاعه.
+        }
+    })
 })
 
 //------------------handle opening cart------------------------
+
+
 const cartBtn = document.getElementsByClassName("cartBtn")[0];
 const cartContainer = document.getElementById("cartContainer");
 const main = document.getElementsByTagName("main");
@@ -132,12 +157,14 @@ cartBtn.addEventListener("click",()=>{
 
 //------------------add to cart--------------------
 
+
 const addToCard = document.getElementsByClassName("add_to_card")[0];
 const orderDetailsContainer = document.getElementsByClassName("orderDetailsContainer")[0];
 const message = document.getElementsByClassName("emptyMessage")[0];
 const numOfAmount = document.getElementsByClassName("num_of_amount")[0];
 const total = document.getElementsByClassName("total")[0];
 const deleteBtn = document.getElementsByClassName("delete")[0];
+const itemsNum = document.getElementsByClassName("itemsNum")[0];
 
 addToCard.addEventListener("click",()=>{
     if(Number(amount.textContent) > 0){
@@ -145,6 +172,8 @@ addToCard.addEventListener("click",()=>{
         orderDetailsContainer.style.display = "flex";
         numOfAmount.textContent = amount.textContent;
         total.textContent = "$"+ (125 * Number(amount.textContent)).toFixed(2);
+        itemsNum.style.display = "flex";
+        itemsNum.textContent = amount.textContent;
     }
 })
 
@@ -152,14 +181,27 @@ deleteBtn.addEventListener("click" , ()=>{
     message.style.display = "flex";
     orderDetailsContainer.style.display = "none";
     amount.textContent = 0;
+    itemsNum.style.display = "none";
+    itemsNum.textContent = "";
 })
 
 
 //---------------------- Display Light box---------------------------
 
-const lightBoxImg = document.getElementsByClassName("lightBoxImg")[0];
 
-product.addEventListener("click", ()=>{
+const lightboxContainer = document.getElementsByClassName("lightboxContainer")[0];
+
+products[0].addEventListener("click",()=>{
     overlay.style.display = "flex";
-    lightBoxImg.style.display = "flex";
+    lightboxContainer.style.display = "flex";
+})
+
+//---------------------- Close Light box--------------------------
+
+
+const closeLightBox = document.getElementsByClassName("closeLightBox")[0];
+
+closeLightBox.addEventListener("click",()=>{
+    overlay.style.display = "none";
+    lightboxContainer.style.display = "none";
 })
