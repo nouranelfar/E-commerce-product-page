@@ -1,3 +1,4 @@
+@charset "UTF-8";
 * {
   margin: 0;
   padding: 0;
@@ -380,10 +381,36 @@ main {
   }
   .imgContainer .smallPictures {
     display: flex;
-    gap: 1.85em;
-    flex-wrap: wrap;
+    gap: 1.75em;
     position: relative;
+    overflow-x: scroll;
     max-width: 100%;
+    padding: 0.5em 0.25em;
+    /* حجم الـ scrollbar */
+  }
+  .imgContainer .smallPictures::-webkit-scrollbar {
+    height: 6px;
+  }
+  .imgContainer .smallPictures {
+    /* المسار */
+  }
+  .imgContainer .smallPictures::-webkit-scrollbar-track {
+    background: transparent;
+    border-radius: 10px;
+  }
+  .imgContainer .smallPictures {
+    /* الجزء المتحرك */
+  }
+  .imgContainer .smallPictures::-webkit-scrollbar-thumb {
+    background: var(--Grayish-blue);
+    border-radius: 10px;
+  }
+  .imgContainer .smallPictures {
+    /* عند الـ hover */
+  }
+  .imgContainer .smallPictures::-webkit-scrollbar-thumb:hover {
+    background: var(--Dark-grayish-blue);
+    cursor: pointer;
   }
   .imgContainer .smallPictures img {
     width: 5em;
@@ -397,8 +424,8 @@ main {
   .imgContainer .smallPictures .imgOverlay {
     position: absolute;
     background-color: rgba(255, 255, 255, 0.7);
-    bottom: 0;
-    left: 0;
+    bottom: 0.5em;
+    left: 0.22em;
     width: 5em;
     height: 5em;
     border-radius: 0.5em;
@@ -424,6 +451,9 @@ main {
   .lightboxContainer button .closeImg {
     width: 1.5em;
     height: 1.5em;
+  }
+  .lightboxContainer .smallPictures {
+    overflow: hidden;
   }
   .lightboxContainer .lightboxImg {
     border-radius: 1em;

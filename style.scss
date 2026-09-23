@@ -451,9 +451,35 @@ main{
 
         .smallPictures{
             display: flex;
-            gap: 1.85em;
-            flex-wrap: wrap;            position: relative;
+            gap: 1.75em;           
+            position: relative;
+            overflow-x: scroll;
             max-width: 100%;
+            padding: .5em .25em;
+
+
+            /* حجم الـ scrollbar */
+            &::-webkit-scrollbar {
+            height: 6px;
+            }
+
+            /* المسار */
+            &::-webkit-scrollbar-track {
+            background: transparent;
+            border-radius: 10px;
+            }
+
+            /* الجزء المتحرك */
+            &::-webkit-scrollbar-thumb {
+            background: var(--Grayish-blue);
+            border-radius: 10px;
+            }
+
+            /* عند الـ hover */
+            &::-webkit-scrollbar-thumb:hover {
+                background: var(--Dark-grayish-blue);
+                cursor: pointer;
+            }
 
             img{
                 width: 5em;
@@ -469,8 +495,8 @@ main{
             .imgOverlay{
                 position: absolute; 
                 background-color: rgba(255, 255, 255, 0.7); 
-                bottom: 0;
-                left: 0;
+                bottom: 0.5em;
+                left: 0.22em;
                 width: 5em;
                 height: 5em; 
                 border-radius: .5em;
@@ -502,6 +528,10 @@ main{
                 width: 1.5em;
                 height: 1.5em;
             }
+        }
+
+        .smallPictures{
+            overflow: hidden;
         }
 
         .lightboxImg{

@@ -29,6 +29,17 @@ function previousImage(){
 
     number--;
     showCurrentImage();
+
+    images.forEach((img)=>{
+        img.classList.remove("activeImg");
+    })
+
+    images[number].classList.add("activeImg");
+    images[number+4].classList.add("activeImg");
+    
+    imgOverlay.forEach((imgOverlay)=>{
+        imgOverlay.style.left = `${images[number].offsetLeft}px`;
+    })
     
 }
 
@@ -39,6 +50,17 @@ function nextImage(){
 
     number++;
     showCurrentImage();
+
+    images.forEach((img)=>{
+        img.classList.remove("activeImg");
+    })
+
+    images[number].classList.add("activeImg");
+    images[number+4].classList.add("activeImg");
+
+    imgOverlay.forEach((imgOverlay)=>{
+        imgOverlay.style.left = `${images[number].offsetLeft}px`;
+    })
 }
 
 next.forEach((next)=>{
@@ -46,7 +68,7 @@ next.forEach((next)=>{
 })
 
 previous.forEach((prev)=>{
-    prev.addEventListener("click", previousImage);
+    prev.addEventListener("click", previousImage)
 })
 
 
@@ -134,7 +156,10 @@ smallPictures.forEach((pics)=>{
                 img.classList.remove("activeImg");
             })
 
-            e.target.classList.add("activeImg");
+            images[number].classList.add("activeImg");
+            images[number+4].classList.add("activeImg");
+
+            
             imgOverlay.forEach((imgOverlay)=>{
                 imgOverlay.style.left = `${e.target.offsetLeft}px`;
             })
