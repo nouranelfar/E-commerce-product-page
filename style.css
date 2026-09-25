@@ -189,10 +189,10 @@ main {
   padding-bottom: 2em;
 }
 
-.imgContainer {
+.imgContainer, .lightboxContainer {
   position: relative;
 }
-.imgContainer .product, .imgContainer .lightboxImg {
+.imgContainer .product, .imgContainer .lightboxImg, .lightboxContainer .product, .lightboxContainer .lightboxImg {
   height: 19em;
   -o-object-fit: cover;
      object-fit: cover;
@@ -201,10 +201,10 @@ main {
   width: 100%;
   cursor: pointer;
 }
-.imgContainer .smallPictures {
+.imgContainer .smallPictures, .lightboxContainer .smallPictures {
   display: none;
 }
-.imgContainer .controlBtns {
+.imgContainer .controlBtns, .lightboxContainer .controlBtns {
   display: flex;
   justify-content: space-between;
   width: 90%;
@@ -212,7 +212,7 @@ main {
   top: 9.5em;
   position: absolute;
 }
-.imgContainer .controlBtns button {
+.imgContainer .controlBtns button, .lightboxContainer .controlBtns button {
   background-color: var(--Light-grayish-blue);
   border: none;
   border-radius: 50%;
@@ -289,7 +289,7 @@ main {
   cursor: pointer;
   background-color: transparent;
 }
-.itemDetails .orderDetails .add_to_card {
+.itemDetails .orderDetails .add_to_cart {
   background-color: var(--Orange);
   border: none;
   padding: 1em;
@@ -304,7 +304,7 @@ main {
   cursor: pointer;
   color: var(--Very-dark-blue);
 }
-.itemDetails .orderDetails .add_to_card:hover, .itemDetails .orderDetails .add_to_card:focus {
+.itemDetails .orderDetails .add_to_cart:hover, .itemDetails .orderDetails .add_to_cart:focus {
   background-color: hsl(26, 94%, 65%);
 }
 
@@ -367,71 +367,70 @@ main {
     display: flex;
     gap: 5%;
     justify-content: center;
-    padding: 5.2em 9.5% 5.2em 10%;
+    padding: 5.2em 10% 5.2em 10%;
   }
-  .imgContainer {
-    width: 38%;
+  .imgContainer, .lightboxContainer {
+    width: 36%;
     display: flex;
     flex-direction: column;
     gap: 2em;
   }
-  .imgContainer .product {
+  .imgContainer .product, .lightboxContainer .product {
     border-radius: 1em;
-    height: 26em;
+    height: 28em;
   }
-  .imgContainer .smallPictures {
+  .imgContainer .smallPictures, .imgContainer .lightboxSmallImages, .lightboxContainer .smallPictures, .lightboxContainer .lightboxSmallImages {
     display: flex;
-    gap: 1.75em;
+    gap: 2em;
     position: relative;
     overflow-x: scroll;
     max-width: 100%;
     padding: 0.5em 0.25em;
     /* حجم الـ scrollbar */
   }
-  .imgContainer .smallPictures::-webkit-scrollbar {
+  .imgContainer .smallPictures::-webkit-scrollbar, .imgContainer .lightboxSmallImages::-webkit-scrollbar, .lightboxContainer .smallPictures::-webkit-scrollbar, .lightboxContainer .lightboxSmallImages::-webkit-scrollbar {
     height: 6px;
   }
-  .imgContainer .smallPictures {
+  .imgContainer .smallPictures, .imgContainer .lightboxSmallImages, .lightboxContainer .smallPictures, .lightboxContainer .lightboxSmallImages {
     /* المسار */
   }
-  .imgContainer .smallPictures::-webkit-scrollbar-track {
+  .imgContainer .smallPictures::-webkit-scrollbar-track, .imgContainer .lightboxSmallImages::-webkit-scrollbar-track, .lightboxContainer .smallPictures::-webkit-scrollbar-track, .lightboxContainer .lightboxSmallImages::-webkit-scrollbar-track {
     background: transparent;
     border-radius: 10px;
   }
-  .imgContainer .smallPictures {
+  .imgContainer .smallPictures, .imgContainer .lightboxSmallImages, .lightboxContainer .smallPictures, .lightboxContainer .lightboxSmallImages {
     /* الجزء المتحرك */
   }
-  .imgContainer .smallPictures::-webkit-scrollbar-thumb {
+  .imgContainer .smallPictures::-webkit-scrollbar-thumb, .imgContainer .lightboxSmallImages::-webkit-scrollbar-thumb, .lightboxContainer .smallPictures::-webkit-scrollbar-thumb, .lightboxContainer .lightboxSmallImages::-webkit-scrollbar-thumb {
     background: var(--Grayish-blue);
     border-radius: 10px;
   }
-  .imgContainer .smallPictures {
+  .imgContainer .smallPictures, .imgContainer .lightboxSmallImages, .lightboxContainer .smallPictures, .lightboxContainer .lightboxSmallImages {
     /* عند الـ hover */
   }
-  .imgContainer .smallPictures::-webkit-scrollbar-thumb:hover {
+  .imgContainer .smallPictures::-webkit-scrollbar-thumb:hover, .imgContainer .lightboxSmallImages::-webkit-scrollbar-thumb:hover, .lightboxContainer .smallPictures::-webkit-scrollbar-thumb:hover, .lightboxContainer .lightboxSmallImages::-webkit-scrollbar-thumb:hover {
     background: var(--Dark-grayish-blue);
     cursor: pointer;
   }
-  .imgContainer .smallPictures img {
+  .imgContainer .smallPictures img, .imgContainer .lightboxSmallImages img, .lightboxContainer .smallPictures img, .lightboxContainer .lightboxSmallImages img {
     width: 5em;
     height: 5em;
     border-radius: 0.5em;
     cursor: pointer;
   }
-  .imgContainer .smallPictures .activeImg {
+  .imgContainer .smallPictures .activeImg, .imgContainer .lightboxSmallImages .activeImg, .lightboxContainer .smallPictures .activeImg, .lightboxContainer .lightboxSmallImages .activeImg {
     outline: 0.18em solid var(--Orange);
   }
-  .imgContainer .smallPictures .imgOverlay {
+  .imgContainer .smallPictures .imgOverlay, .imgContainer .smallPictures .imgOverlay2, .imgContainer .lightboxSmallImages .imgOverlay, .imgContainer .lightboxSmallImages .imgOverlay2, .lightboxContainer .smallPictures .imgOverlay, .lightboxContainer .smallPictures .imgOverlay2, .lightboxContainer .lightboxSmallImages .imgOverlay, .lightboxContainer .lightboxSmallImages .imgOverlay2 {
     position: absolute;
     background-color: rgba(255, 255, 255, 0.7);
-    bottom: 0.5em;
-    left: 0.22em;
     width: 5em;
     height: 5em;
     border-radius: 0.5em;
     cursor: pointer;
+    justify-self: start;
   }
-  .imgContainer .controlBtns {
+  .imgContainer .controlBtns, .lightboxContainer .controlBtns {
     display: none;
   }
   .lightboxContainer {
@@ -451,9 +450,6 @@ main {
   .lightboxContainer button .closeImg {
     width: 1.5em;
     height: 1.5em;
-  }
-  .lightboxContainer .smallPictures {
-    overflow: hidden;
   }
   .lightboxContainer .lightboxImg {
     border-radius: 1em;
@@ -502,7 +498,7 @@ main {
   .itemDetails .orderDetails .amountContainer p {
     margin-top: -0.1em;
   }
-  .itemDetails .orderDetails .add_to_card {
+  .itemDetails .orderDetails .add_to_cart {
     width: 64%;
     padding: 0;
     height: 3.5em;

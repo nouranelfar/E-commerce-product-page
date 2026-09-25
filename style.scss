@@ -220,7 +220,7 @@ main{
     padding-bottom: 2em;
 }
 
-.imgContainer{
+.imgContainer ,.lightboxContainer{
     position: relative;
 
     .product, .lightboxImg{
@@ -336,7 +336,7 @@ main{
 
         }
 
-        .add_to_card{
+        .add_to_cart{
             background-color: var(--Orange);
             border: none;
             padding: 1em;
@@ -435,23 +435,23 @@ main{
         display: flex;
         gap: 5%;
         justify-content: center;
-        padding: 5.2em 9.5% 5.2em 10%;
+        padding: 5.2em 10% 5.2em 10%;
     }
 
-    .imgContainer{
-        width: 38%;
+    .imgContainer ,.lightboxContainer{
+        width: 36%;
         display: flex;
         flex-direction: column;
         gap: 2em;
 
         .product{
             border-radius: 1em; 
-            height: 26em;
+            height: 28em;
         }
 
-        .smallPictures{
+        .smallPictures , .lightboxSmallImages{
             display: flex;
-            gap: 1.75em;           
+            gap: 2em;           
             position: relative;
             overflow-x: scroll;
             max-width: 100%;
@@ -492,15 +492,14 @@ main{
                 outline: .18em solid var(--Orange);
             }
 
-            .imgOverlay{
+            .imgOverlay , .imgOverlay2{
                 position: absolute; 
-                background-color: rgba(255, 255, 255, 0.7); 
-                bottom: 0.5em;
-                left: 0.22em;
+                background-color: rgba(255, 255, 255, 0.7);
                 width: 5em;
-                height: 5em; 
+                height: 5em;
                 border-radius: .5em;
                 cursor: pointer;
+                justify-self: start;
             }
         }
 
@@ -528,10 +527,6 @@ main{
                 width: 1.5em;
                 height: 1.5em;
             }
-        }
-
-        .smallPictures{
-            overflow: hidden;
         }
 
         .lightboxImg{
@@ -595,7 +590,7 @@ main{
                 }
             }
 
-            .add_to_card{
+            .add_to_cart{
                 width: 64%;
                 padding: 0;
                 height: 3.5em;

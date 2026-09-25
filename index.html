@@ -9,26 +9,6 @@
   <title>Frontend Mentor | E-commerce product page</title>
 </head>
 <body>
-<!--
-  Collections
-  Men
-  Women
-  About
-  Contact
-
-  Sneaker Company
-
-  Fall Limited Edition Sneakers
-
-  These low-profile sneakers are your perfect casual wear companion. Featuring a 
-  durable rubber outer sole, they’ll withstand everything the weather can offer.
-
-  $125.00
-  50%
-  $250.00
-
-  0
-  Add to cart-->
 
   <header>
     <div>
@@ -90,7 +70,7 @@
 
   <main>
     <div class="imgContainer"> 
-        <img src="" fetchpriority="high" loading="eager"
+      <img src="" fetchpriority="high" loading="eager"
         class="product" alt="sneaker image" width="391" height="391">
 
       <div class="smallPictures">
@@ -112,20 +92,20 @@
     </div>
 
 
-    <div class="imgContainer lightboxContainer">
+    <div class="lightboxContainer">
       <button class="closeLightBox" type="button" aria-label="close">
         <img class="closeImg" src="./assets/images/icon-close.svg" alt="" width="14" height="15">
       </button>
 
-      <img src="./assets/images/image-product-1.jpg" fetchpriority="high" loading="eager"
-      class="product lightboxImg" alt="sneaker image" width="391" height="391">
+      <img src="./assets/images/image-product-1.jpg"
+      class="lightboxImg" alt="sneaker image" width="391" height="391">
 
-      <div class="smallPictures">
-        <img class="smallImg activeImg" src="./assets/images/image-product-1-thumbnail.jpg" loading="lazy" width="176" height="176" alt="" data-value="1">
-        <img class="smallImg" src="./assets/images/image-product-2-thumbnail.jpg" loading="lazy" width="176" height="176" alt="" data-value="2">
-        <img class="smallImg" src="./assets/images/image-product-3-thumbnail.jpg" loading="lazy" width="176" height="176" alt="" data-value="3">
-        <img class="smallImg" src="./assets/images/image-product-4-thumbnail.jpg" loading="lazy" width="176" height="176" alt="" data-value="4">
-        <div class="imgOverlay"></div>
+      <div class="lightboxSmallImages">
+        <img class="lightboxSmallImg activeImg" src="./assets/images/image-product-1-thumbnail.jpg" loading="lazy" width="176" height="176" alt="" data-value="1">
+        <img class="lightboxSmallImg" src="./assets/images/image-product-2-thumbnail.jpg" loading="lazy" width="176" height="176" alt="" data-value="2">
+        <img class="lightboxSmallImg" src="./assets/images/image-product-3-thumbnail.jpg" loading="lazy" width="176" height="176" alt="" data-value="3">
+        <img class="lightboxSmallImg" src="./assets/images/image-product-4-thumbnail.jpg" loading="lazy" width="176" height="176" alt="" data-value="4">
+        <div class="imgOverlay2"></div>
       </div>
 
       <div class="controlBtns">
@@ -160,7 +140,7 @@
           <button class="plus" type="button" aria-label="plus"><img src="./assets/images/icon-plus.svg" alt=""></button>
         </div>
         
-        <button type="button" class="add_to_card"><img src="./assets/images/icon-cart.svg" width="22" height="20" alt=""> Add to cart</button>
+        <button type="button" class="add_to_cart"><img src="./assets/images/icon-cart.svg" width="22" height="20" alt=""> Add to cart</button>
       </div>
     </div>
   </main>

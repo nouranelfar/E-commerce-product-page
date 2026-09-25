@@ -1,74 +1,66 @@
 //---------------- Handle next and previous image ------------------
 
-const prodactImages = [
+const productImages = [
     "./assets/images/image-product-1.jpg",
     "./assets/images/image-product-2.jpg",
     "./assets/images/image-product-3.jpg",
     "./assets/images/image-product-4.jpg"
 ];
-const products = document.querySelectorAll(".product");
+const product = document.querySelector(".product");
 const previous = document.querySelectorAll(".previous");
 const next = document.querySelectorAll(".next");
 const lightboxImg = document.getElementsByClassName("lightboxImg")[0];
 let number = 0;
 
 function showCurrentImage(){
-        lightboxImg.src = prodactImages[number];
+        lightboxImg.src = productImages[number];
         
-    products.forEach((product)=>{
-        product.src = prodactImages[number];
-    })
+        product.src = productImages[number];
 }
 
 showCurrentImage();
 
-function previousImage(){
-    if(number <= 0){
-        return;
-    }
 
-    number--;
+function displayClickedImage(){
+    
     showCurrentImage();
 
     images.forEach((img)=>{
         img.classList.remove("activeImg");
     })
 
-    images[number].classList.add("activeImg");
-    images[number+4].classList.add("activeImg");
-    
-    imgOverlay.forEach((imgOverlay)=>{
-        imgOverlay.style.left = `${images[number].offsetLeft}px`;
-    })
-    
-}
-
-function nextImage(){
-    if(number >= prodactImages.length -1){
-        return;
-    }
-
-    number++;
-    showCurrentImage();
-
-    images.forEach((img)=>{
+    images2.forEach((img)=>{
         img.classList.remove("activeImg");
     })
 
     images[number].classList.add("activeImg");
-    images[number+4].classList.add("activeImg");
+    images2[number].classList.add("activeImg");
 
-    imgOverlay.forEach((imgOverlay)=>{
-        imgOverlay.style.left = `${images[number].offsetLeft}px`;
-    })
+    imgOverlay.style.left = `${images[number].offsetLeft}px`;
+    imgOverlay2.style.left = `${images[number].offsetLeft}px`;
 }
 
 next.forEach((next)=>{
-    next.addEventListener("click", nextImage);
+    next.addEventListener("click", ()=>{
+        if(number >= productImages.length -1){
+            return;
+        }else{
+            number++;
+            displayClickedImage();
+        }
+    });
 })
 
 previous.forEach((prev)=>{
-    prev.addEventListener("click", previousImage)
+    prev.addEventListener("click", ()=>{
+        if(number <= 0){
+            return;
+        }
+        else{
+            number--;
+            displayClickedImage();
+        }
+    })
 })
 
 
@@ -137,43 +129,53 @@ overlay.addEventListener("click",
 //----------------Handle choosing small images------------------
 
 
-const smallPictures = document.querySelectorAll(".smallPictures");
+const smallPictures = document.querySelector(".smallPictures");
+const lightboxSmallImages = document.querySelector(".lightboxSmallImages");
 const images = document.querySelectorAll(".smallImg");
-const imgOverlay = document.querySelectorAll(".imgOverlay");
+const images2 = document.querySelectorAll(".lightboxSmallImg");
+const imgOverlay = document.getElementsByClassName("imgOverlay")[0];
+const imgOverlay2 = document.getElementsByClassName("imgOverlay2")[0];
 
-smallPictures.forEach((pics)=>{
-    pics.addEventListener("click",(e)=>{
-        const image = e.target.dataset.value;
-        if(typeof(image) != "undefined"){
-            
-            products.forEach((product)=>{
-                product.setAttribute("src" , `./assets/images/image-product-${image}.jpg`);
-            })
+function HandleChoosingSmallImages(e){
+    const image = e.target.dataset.value;
+    if(typeof(image) != "undefined"){
+        
+        product.setAttribute("src" , `./assets/images/image-product-${image}.jpg`);
+        lightboxImg.setAttribute("src" , `./assets/images/image-product-${image}.jpg`);
 
-            number = image-1;
+        number = image-1;
 
-            images.forEach((img)=>{
-                img.classList.remove("activeImg");
-            })
+        images.forEach((img)=>{
+            img.classList.remove("activeImg");
+        })
 
-            images[number].classList.add("activeImg");
-            images[number+4].classList.add("activeImg");
+        images[number].classList.add("activeImg");
 
-            
-            imgOverlay.forEach((imgOverlay)=>{
-                imgOverlay.style.left = `${e.target.offsetLeft}px`;
-            })
-                 //بتجيب المسافة بين الحافة الشمال للعنصر وبين الحافة الشمال للـ parent بتاعه.
-        }
-    })
+        images2.forEach((img)=>{
+            img.classList.remove("activeImg");
+        })
+
+        images2[number].classList.add("activeImg");
+
+        imgOverlay.style.left = `${e.target.offsetLeft}px`;  //بتجيب المسافة بين الحافة الشمال للعنصر وبين الحافة الشمال للـ parent بتاعه.
+        imgOverlay2.style.left = `${e.target.offsetLeft}px`;
+    }
+}
+
+smallPictures.addEventListener("click",(e)=>{
+    HandleChoosingSmallImages(e);
 })
+
+lightboxSmallImages.addEventListener("click",(e)=>{
+    HandleChoosingSmallImages(e);
+})
+
 
 //------------------handle opening cart------------------------
 
 
 const cartBtn = document.getElementsByClassName("cartBtn")[0];
 const cartContainer = document.getElementById("cartContainer");
-const main = document.getElementsByTagName("main");
 
 cartBtn.addEventListener("click",()=>{
     cartContainer.classList.toggle("show");
@@ -183,7 +185,7 @@ cartBtn.addEventListener("click",()=>{
 //------------------add to cart--------------------
 
 
-const addToCard = document.getElementsByClassName("add_to_card")[0];
+const addToCart = document.getElementsByClassName("add_to_cart")[0];
 const orderDetailsContainer = document.getElementsByClassName("orderDetailsContainer")[0];
 const message = document.getElementsByClassName("emptyMessage")[0];
 const numOfAmount = document.getElementsByClassName("num_of_amount")[0];
@@ -191,7 +193,7 @@ const total = document.getElementsByClassName("total")[0];
 const deleteBtn = document.getElementsByClassName("delete")[0];
 const itemsNum = document.getElementsByClassName("itemsNum")[0];
 
-addToCard.addEventListener("click",()=>{
+addToCart.addEventListener("click",()=>{
     if(Number(amount.textContent) > 0){
         message.style.display = "none";
         orderDetailsContainer.style.display = "flex";
@@ -216,7 +218,7 @@ deleteBtn.addEventListener("click" , ()=>{
 
 const lightboxContainer = document.getElementsByClassName("lightboxContainer")[0];
 
-products[0].addEventListener("click",()=>{
+product.addEventListener("click",()=>{
     overlay.style.display = "flex";
     lightboxContainer.style.display = "flex";
 })
