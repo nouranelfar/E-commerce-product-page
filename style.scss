@@ -5,13 +5,9 @@
 }
 
 :root{
-    
-//Primary
 
 --Orange: hsl(26, 100%, 55%);
 --Pale-orange: hsl(25, 100%, 94%);
-
-//Neutral
 
 --Very-dark-blue: hsl(220, 13%, 13%);
 --Dark-grayish-blue: hsl(219, 9%, 45%);
@@ -24,9 +20,10 @@
 
 @font-face {
     font-family: 'Kumbh Sans';
-    src: url('./assets/fonts/Kumbh_Sans/KumbhSans-VariableFont_YOPQ\,wght.ttf');
+    src: url('./assets/fonts/Kumbh_Sans/KumbhSans-VariableFont_YOPQ\,wght.ttf') format("truetype");
     font-style: normal;
     font-weight: 100 900;
+    font-display: swap;
 }
 
 body{
@@ -77,9 +74,15 @@ header{
         height: 1.6em;
         cursor: pointer;
 
-        &:hover{
+        &:hover
+        ,&:focus{
             outline: .2em solid var(--Orange);
             border-radius: 50%;
+        }
+
+        img{
+            width: 100%;
+            height: 100%;
         }
     }
 
@@ -135,7 +138,7 @@ header{
         position: absolute;
         top: 5em;
         right: .5em;
-        width: 21em;
+        width: clamp(10em , 15em + 15vw, 21em);
         min-height: 15.5em;
         border-radius: .5em;
         background-color: var(--White);
@@ -345,7 +348,6 @@ main{
             font-size: 1rem;
             font-weight: 700;
             justify-content: center;
-            color: inherit;
             border-radius: .5em;
             box-shadow: 0em .5em 2em hsla(26, 100%, 55%, 0.5);
             cursor: pointer;
@@ -420,7 +422,6 @@ main{
         .overlay{
             z-index: 3500;
         }
-
     }
 
     hr{
@@ -439,23 +440,24 @@ main{
     }
 
     .imgContainer ,.lightboxContainer{
-        width: 36%;
+        width: 38%;
         display: flex;
         flex-direction: column;
         gap: 2em;
 
         .product{
             border-radius: 1em; 
-            height: 28em;
+            height: 26em;
         }
 
         .smallPictures , .lightboxSmallImages{
             display: flex;
-            gap: 2em;           
+            gap: 1.55em;           
             position: relative;
-            overflow-x: scroll;
+            overflow-x: auto;
             max-width: 100%;
-            padding: .5em .25em;
+            padding: .5em;
+            justify-content: center;
 
 
             /* حجم الـ scrollbar */
@@ -481,20 +483,34 @@ main{
                 cursor: pointer;
             }
 
+            div{
+                width: 5em;
+                height: 5em;
+            }
+
             img{
                 width: 5em;
                 height: 5em;
                 border-radius: .5em;
                 cursor: pointer;
+
+                &:hover{
+                    filter: opacity(.5);
+                }
+            }
+
+            .activeContainer{
+                outline: .18em solid var(--Orange);
+                border-radius: .5em;
             }
 
             .activeImg{
-                outline: .18em solid var(--Orange);
+                filter: opacity(.5);
             }
 
             .imgOverlay , .imgOverlay2{
                 position: absolute; 
-                background-color: rgba(255, 255, 255, 0.7);
+                background-color: hsl(0, 0%, 100%,0.6);
                 width: 5em;
                 height: 5em;
                 border-radius: .5em;

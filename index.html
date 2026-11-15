@@ -6,6 +6,7 @@
   <meta name="description" content="E-commerce product page">
   <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">
   <link rel="stylesheet" href="style.css">
+  <link rel="preload" as="image" href="./assets/images/image-product-1.jpg" fetchpriority="high">
   <title>Frontend Mentor | E-commerce product page</title>
 </head>
 <body>
@@ -18,7 +19,7 @@
       <a href="#"><img src="./assets/images/logo.svg" alt="logo" width="138" height="20"></a>
 
       <nav class="navigation" id="navigation">
-      <button type="button" class="close"> <img src="./assets/images/icon-close.svg" width="14" height="15" alt=""></button>
+      <button type="button" class="close" aria-label="close icon"> <img src="./assets/images/icon-close.svg" width="14" height="15" alt=""></button>
       <ul>
         <li><a href="#">Collections</a></li>
         <li><a href="#">Men</a></li>
@@ -34,12 +35,12 @@
     
 
     <div class="avatarContainer">
-      <button type="button" class="cartBtn" aria-controls="cartContainer" aria-expanded="false">
+      <button type="button" class="cartBtn" aria-label="cart" aria-controls="cartContainer" aria-expanded="false">
         <img src="./assets/images/icon-cart.svg" alt="" width="22" height="20">
         <div class="itemsNum"></div>
       </button>
-      <a href="#">
-      <img src="./assets/images/image-avatar.png" alt="" width="100" height="100" class="avatar">
+      <a href="#" class="avatar" aria-label="avatar">
+      <img src="./assets/images/image-avatar.png" alt="" width="100" height="100">
       </a>
     </div>
 
@@ -70,15 +71,15 @@
 
   <main>
     <div class="imgContainer"> 
-      <img src="" fetchpriority="high" loading="eager"
+      <img src="./assets/images/image-product-1.jpg" fetchpriority="high" loading="eager"
         class="product" alt="sneaker image" width="391" height="391">
 
       <div class="smallPictures">
-        <img class="smallImg activeImg" src="./assets/images/image-product-1-thumbnail.jpg" loading="lazy" width="176" height="176" alt="" data-value="1">
-        <img class="smallImg" src="./assets/images/image-product-2-thumbnail.jpg" loading="lazy" width="176" height="176" alt="" data-value="2">
-        <img class="smallImg" src="./assets/images/image-product-3-thumbnail.jpg" loading="lazy" width="176" height="176" alt="" data-value="3">
-        <img class="smallImg" src="./assets/images/image-product-4-thumbnail.jpg" loading="lazy" width="176" height="176" alt="" data-value="4">
-        <div class="imgOverlay"></div>
+        <div class="imgoutline activeContainer"><img class="smallImg activeImg" src="./assets/images/image-product-1-thumbnail.jpg" loading="lazy" width="176" height="176" alt="" data-value="1"></div>
+        <div class="imgoutline"><img class="smallImg" src="./assets/images/image-product-2-thumbnail.jpg" loading="lazy" width="176" height="176" alt="" data-value="2"></div>
+        <div class="imgoutline"><img class="smallImg" src="./assets/images/image-product-3-thumbnail.jpg" loading="lazy" width="176" height="176" alt="" data-value="3"></div>
+        <div class="imgoutline"><img class="smallImg" src="./assets/images/image-product-4-thumbnail.jpg" loading="lazy" width="176" height="176" alt="" data-value="4"></div>
+        
       </div>
 
       <div class="controlBtns">
@@ -101,11 +102,11 @@
       class="lightboxImg" alt="sneaker image" width="391" height="391">
 
       <div class="lightboxSmallImages">
-        <img class="lightboxSmallImg activeImg" src="./assets/images/image-product-1-thumbnail.jpg" loading="lazy" width="176" height="176" alt="" data-value="1">
-        <img class="lightboxSmallImg" src="./assets/images/image-product-2-thumbnail.jpg" loading="lazy" width="176" height="176" alt="" data-value="2">
-        <img class="lightboxSmallImg" src="./assets/images/image-product-3-thumbnail.jpg" loading="lazy" width="176" height="176" alt="" data-value="3">
-        <img class="lightboxSmallImg" src="./assets/images/image-product-4-thumbnail.jpg" loading="lazy" width="176" height="176" alt="" data-value="4">
-        <div class="imgOverlay2"></div>
+        <div class="imgoutline2 activeContainer"><img class="lightboxSmallImg activeImg" src="./assets/images/image-product-1-thumbnail.jpg" loading="lazy" width="176" height="176" alt="" data-value="1"></div>
+        <div class="imgoutline2"><img class="lightboxSmallImg" src="./assets/images/image-product-2-thumbnail.jpg" loading="lazy" width="176" height="176" alt="" data-value="2"></div>
+        <div class="imgoutline2"><img class="lightboxSmallImg" src="./assets/images/image-product-3-thumbnail.jpg" loading="lazy" width="176" height="176" alt="" data-value="3"></div>
+        <div class="imgoutline2"><img class="lightboxSmallImg" src="./assets/images/image-product-4-thumbnail.jpg" loading="lazy" width="176" height="176" alt="" data-value="4"></div>
+        
       </div>
 
       <div class="controlBtns">
@@ -135,9 +136,9 @@
 
       <div class="orderDetails">
         <div class="amountContainer">
-          <button class="minus" type="button" aria-label="minus"><img src="./assets/images/icon-minus.svg" alt=""></button>
+          <button class="minus" type="button" aria-label="minus"><img src="./assets/images/icon-minus.svg" width="12" height="4" alt=""></button>
           <p class="amount">0</p>
-          <button class="plus" type="button" aria-label="plus"><img src="./assets/images/icon-plus.svg" alt=""></button>
+          <button class="plus" type="button" aria-label="plus"><img src="./assets/images/icon-plus.svg" width="12" height="12" alt=""></button>
         </div>
         
         <button type="button" class="add_to_cart"><img src="./assets/images/icon-cart.svg" width="22" height="20" alt=""> Add to cart</button>

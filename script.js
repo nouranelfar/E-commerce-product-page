@@ -1,3 +1,9 @@
+//store files in the cache memory:
+//step one
+if("serviceWorker" in navigator){
+  navigator.serviceWorker.register("service-worker.js");
+}
+
 //---------------- Handle next and previous image ------------------
 
 const productImages = [
@@ -18,8 +24,6 @@ function showCurrentImage(){
         product.src = productImages[number];
 }
 
-showCurrentImage();
-
 
 function displayClickedImage(){
     
@@ -36,31 +40,45 @@ function displayClickedImage(){
     images[number].classList.add("activeImg");
     images2[number].classList.add("activeImg");
 
-    imgOverlay.style.left = `${images[number].offsetLeft}px`;
-    imgOverlay2.style.left = `${images[number].offsetLeft}px`;
+    imgoutlines.forEach((imgoutline)=>{
+        imgoutline.classList.remove("activeContainer");
+    })
+
+    imgoutlines2.forEach((imgoutline2)=>{
+        imgoutline2.classList.remove("activeContainer");
+    })
+
+    imgoutlines[number].classList.add("activeContainer");
+
+    imgoutlines2[number].classList.add("activeContainer");
+
+}
+
+function nextImage(){
+    if(number >= productImages.length -1){
+        return;
+    }else{
+        number++;
+        displayClickedImage();
+    }
 }
 
 next.forEach((next)=>{
-    next.addEventListener("click", ()=>{
-        if(number >= productImages.length -1){
-            return;
-        }else{
-            number++;
-            displayClickedImage();
-        }
-    });
+    next.addEventListener("click", nextImage);
 })
 
+function previousImage(){
+    if(number <= 0){
+        return;
+    }
+    else{
+        number--;
+        displayClickedImage();
+    }
+}
+
 previous.forEach((prev)=>{
-    prev.addEventListener("click", ()=>{
-        if(number <= 0){
-            return;
-        }
-        else{
-            number--;
-            displayClickedImage();
-        }
-    })
+    prev.addEventListener("click", previousImage)
 })
 
 
@@ -133,8 +151,8 @@ const smallPictures = document.querySelector(".smallPictures");
 const lightboxSmallImages = document.querySelector(".lightboxSmallImages");
 const images = document.querySelectorAll(".smallImg");
 const images2 = document.querySelectorAll(".lightboxSmallImg");
-const imgOverlay = document.getElementsByClassName("imgOverlay")[0];
-const imgOverlay2 = document.getElementsByClassName("imgOverlay2")[0];
+const imgoutlines = document.querySelectorAll(".imgoutline");
+const imgoutlines2 = document.querySelectorAll(".imgoutline2");
 
 function HandleChoosingSmallImages(e){
     const image = e.target.dataset.value;
@@ -151,14 +169,23 @@ function HandleChoosingSmallImages(e){
 
         images[number].classList.add("activeImg");
 
+        imgoutlines.forEach((imgoutline)=>{
+            imgoutline.classList.remove("activeContainer");
+        })
+
+        imgoutlines[number].classList.add("activeContainer");
+
         images2.forEach((img)=>{
             img.classList.remove("activeImg");
         })
 
         images2[number].classList.add("activeImg");
 
-        imgOverlay.style.left = `${e.target.offsetLeft}px`;  //بتجيب المسافة بين الحافة الشمال للعنصر وبين الحافة الشمال للـ parent بتاعه.
-        imgOverlay2.style.left = `${e.target.offsetLeft}px`;
+        imgoutlines2.forEach((imgoutline2)=>{
+            imgoutline2.classList.remove("activeContainer");
+        })
+
+        imgoutlines2[number].classList.add("activeContainer");
     }
 }
 
@@ -169,7 +196,6 @@ smallPictures.addEventListener("click",(e)=>{
 lightboxSmallImages.addEventListener("click",(e)=>{
     HandleChoosingSmallImages(e);
 })
-
 
 //------------------handle opening cart------------------------
 

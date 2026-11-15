@@ -18,9 +18,10 @@
 
 @font-face {
   font-family: "Kumbh Sans";
-  src: url("./assets/fonts/Kumbh_Sans/KumbhSans-VariableFont_YOPQ,wght.ttf");
+  src: url("./assets/fonts/Kumbh_Sans/KumbhSans-VariableFont_YOPQ,wght.ttf") format("truetype");
   font-style: normal;
   font-weight: 100 900;
+  font-display: swap;
 }
 body {
   font-family: "Kumbh Sans", sans-serif;
@@ -66,9 +67,13 @@ header .avatar {
   height: 1.6em;
   cursor: pointer;
 }
-header .avatar:hover {
+header .avatar:hover, header .avatar:focus {
   outline: 0.2em solid var(--Orange);
   border-radius: 50%;
+}
+header .avatar img {
+  width: 100%;
+  height: 100%;
 }
 header .overlay {
   position: fixed;
@@ -116,7 +121,7 @@ header .cartContainer {
   position: absolute;
   top: 5em;
   right: 0.5em;
-  width: 21em;
+  width: clamp(10em, 15em + 15vw, 21em);
   min-height: 15.5em;
   border-radius: 0.5em;
   background-color: var(--White);
@@ -298,7 +303,6 @@ main {
   font-size: 1rem;
   font-weight: 700;
   justify-content: center;
-  color: inherit;
   border-radius: 0.5em;
   box-shadow: 0em 0.5em 2em hsla(26, 100%, 55%, 0.5);
   cursor: pointer;
@@ -370,22 +374,23 @@ main {
     padding: 5.2em 10% 5.2em 10%;
   }
   .imgContainer, .lightboxContainer {
-    width: 36%;
+    width: 38%;
     display: flex;
     flex-direction: column;
     gap: 2em;
   }
   .imgContainer .product, .lightboxContainer .product {
     border-radius: 1em;
-    height: 28em;
+    height: 26em;
   }
   .imgContainer .smallPictures, .imgContainer .lightboxSmallImages, .lightboxContainer .smallPictures, .lightboxContainer .lightboxSmallImages {
     display: flex;
-    gap: 2em;
+    gap: 1.55em;
     position: relative;
-    overflow-x: scroll;
+    overflow-x: auto;
     max-width: 100%;
-    padding: 0.5em 0.25em;
+    padding: 0.5em;
+    justify-content: center;
     /* حجم الـ scrollbar */
   }
   .imgContainer .smallPictures::-webkit-scrollbar, .imgContainer .lightboxSmallImages::-webkit-scrollbar, .lightboxContainer .smallPictures::-webkit-scrollbar, .lightboxContainer .lightboxSmallImages::-webkit-scrollbar {
@@ -412,18 +417,29 @@ main {
     background: var(--Dark-grayish-blue);
     cursor: pointer;
   }
+  .imgContainer .smallPictures div, .imgContainer .lightboxSmallImages div, .lightboxContainer .smallPictures div, .lightboxContainer .lightboxSmallImages div {
+    width: 5em;
+    height: 5em;
+  }
   .imgContainer .smallPictures img, .imgContainer .lightboxSmallImages img, .lightboxContainer .smallPictures img, .lightboxContainer .lightboxSmallImages img {
     width: 5em;
     height: 5em;
     border-radius: 0.5em;
     cursor: pointer;
   }
-  .imgContainer .smallPictures .activeImg, .imgContainer .lightboxSmallImages .activeImg, .lightboxContainer .smallPictures .activeImg, .lightboxContainer .lightboxSmallImages .activeImg {
+  .imgContainer .smallPictures img:hover, .imgContainer .lightboxSmallImages img:hover, .lightboxContainer .smallPictures img:hover, .lightboxContainer .lightboxSmallImages img:hover {
+    filter: opacity(0.5);
+  }
+  .imgContainer .smallPictures .activeContainer, .imgContainer .lightboxSmallImages .activeContainer, .lightboxContainer .smallPictures .activeContainer, .lightboxContainer .lightboxSmallImages .activeContainer {
     outline: 0.18em solid var(--Orange);
+    border-radius: 0.5em;
+  }
+  .imgContainer .smallPictures .activeImg, .imgContainer .lightboxSmallImages .activeImg, .lightboxContainer .smallPictures .activeImg, .lightboxContainer .lightboxSmallImages .activeImg {
+    filter: opacity(0.5);
   }
   .imgContainer .smallPictures .imgOverlay, .imgContainer .smallPictures .imgOverlay2, .imgContainer .lightboxSmallImages .imgOverlay, .imgContainer .lightboxSmallImages .imgOverlay2, .lightboxContainer .smallPictures .imgOverlay, .lightboxContainer .smallPictures .imgOverlay2, .lightboxContainer .lightboxSmallImages .imgOverlay, .lightboxContainer .lightboxSmallImages .imgOverlay2 {
     position: absolute;
-    background-color: rgba(255, 255, 255, 0.7);
+    background-color: hsla(0, 0%, 100%, 0.6);
     width: 5em;
     height: 5em;
     border-radius: 0.5em;
