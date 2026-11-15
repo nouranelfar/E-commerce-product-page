@@ -1,5 +1,5 @@
 //step two
-const cacheName = "site-cache-v4";
+const cacheName = "site-cache-v5";
 const files = [
   "/",
   "index.html",
