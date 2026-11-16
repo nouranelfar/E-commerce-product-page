@@ -123,22 +123,25 @@ plus.addEventListener("click",plusHandle)
 const closeBtn = document.getElementsByClassName("close")[0];
 const menu = document.getElementsByClassName("menu")[0];
 const overlay = document.getElementsByClassName("overlay")[0];
-const navigation = document.getElementsByClassName("navigation")[0];
+const navigation = document.querySelector(".navigation");
 
 closeBtn.addEventListener("click",()=>{
-    navigation.style.display = "none";
+    /*navigation.style.display = "none";*/
+    navigation.classList.remove("showNav");
     overlay.style.display = "none";
+    
 })
 
 menu.addEventListener("click",()=>{
-    navigation.style.display = "flex";
+    /*navigation.style.display = "flex";*/
+    navigation.classList.add("showNav");
     overlay.style.display = "flex";
 })
 
 overlay.addEventListener("click",
     ()=>{
         if(window.innerWidth < 960){
-        navigation.style.display = "none";
+        navigation.classList.remove("showNav");
         overlay.style.display = "none";
     }
 }

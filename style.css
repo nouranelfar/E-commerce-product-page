@@ -117,6 +117,9 @@ header .navigation ul li a {
 header .navigation ul li a:focus {
   color: var(--Orange);
 }
+header .showNav {
+  display: flex;
+}
 header .cartContainer {
   position: absolute;
   top: 5em;
